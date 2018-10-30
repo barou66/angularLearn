@@ -1,4 +1,5 @@
 import {Subject} from 'rxjs';
+import {NgForm} from '@angular/forms';
 
 export class AppareilService {
 
@@ -57,6 +58,20 @@ export class AppareilService {
       }
     );
     return appareil;
+  }
+
+
+  addAppareil(name: string, status: string) {
+    const appareilObject = {
+      id: 0,
+      name: '',
+      status: ''
+    };
+    appareilObject.name = name;
+    appareilObject.status = status;
+    appareilObject.id = this.appareils[(this.appareils.length - 1)].id + 1;
+    this.appareils.push(appareilObject);
+    this.emitAppareilSubject();
   }
 
 }
